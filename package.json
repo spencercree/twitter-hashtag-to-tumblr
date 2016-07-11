@@ -29,7 +29,7 @@
     "twitter": "^1.2.5",
     "dotenv": "~1.0.0",
     "tumblrwks": "0.3.0",
-    "request": "2.73.1"
+    "request": "2.73.0"
   },
   "engines": {
     "node": "4.4.7"
