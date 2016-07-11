@@ -31,7 +31,7 @@ var client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-// Tweet stream
+// Tweet streams
 client.stream('statuses/filter', {track: '#pokemongofail, #pokemongofails, #pokemongofailz'}, function(stream) {
   stream.on('data', function(tweet) {
 
