@@ -1,0 +1,32 @@
+{
+  "name": "twitter-hashtag-to-tumblr",
+  "version": "1.0.0",
+  "description": "Embed tweets with a certain hashtag as a new post on a Tumblr blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spencercree/twitter-hashtag-to-tumblr.git"
+  },
+  "keywords": [
+    "twitter",
+    "tumblr",
+    "hashtag",
+    "streaming"
+  ],
+  "author": "@spencercree",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/spencercree/twitter-hashtag-to-tumblr/issues"
+  },
+  "homepage": "https://github.com/spencercree/twitter-hashtag-to-tumblr#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5",
+    "twitter": "^1.2.5",
+    "dotenv": "~1.0.0"
+  }
+}
