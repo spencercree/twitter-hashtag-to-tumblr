@@ -32,7 +32,7 @@ var client = new Twitter({
 });
 
 // Tweet stream
-client.stream('statuses/filter', {track: '%23pokemongofail', '%23pokemongofails', '%23pokemongofailz'}, function(stream) {
+client.stream('statuses/filter', {track: '#pokemongofail, #pokemongofails, #pokemongofailz'}, function(stream) {
   stream.on('data', function(tweet) {
 
     //id of the tweet that matches the hashtag
