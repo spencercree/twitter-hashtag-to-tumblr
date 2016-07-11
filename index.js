@@ -1,5 +1,6 @@
 //carrythenews
 //https://en.wikipedia.org/wiki/All_the_Young_Dudes
+require ('newrelic');
 var Twitter = require('twitter');
 var express = require('express');
 var dotenv = require('dotenv').config();
