@@ -12,6 +12,7 @@ var server = http.createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
+// Tumblr access
 var tumblr = new Tumblr(
   {
     consumerKey: process.env.TUMBLR_CONSUMER_KEY,
@@ -34,19 +35,28 @@ var client = new Twitter({
 client.stream('statuses/filter', {track: '#pokemongofail'}, function(stream) {
   stream.on('data', function(tweet) {
 
+    //id of the tweet that matches the hashtag
     var tweetID = tweet.id_str;
+    //screenname of user who tweeted it
     var username = tweet.user.screen_name;
+    //url to this tweet
     var url = "https://twitter.com/" + username + "/status/" + tweetID;
-
+    //url that we will be pinging to get the embed code
     var full_url = "http://publish.twitter.com/oembed?url=" + url;
 
+    //get request to the oEmbed api
     request(full_url, function (error, response, body) {
       if (!error && response.statusCode == 200) {
+
+        //parsing the response into a JSON object
         var bodyObject = JSON.parse(body);
+        //the html for the embed code
         var tumblrPost = bodyObject.html;
         console.log(bodyObject.html);
 
+        //double checking that I did get an embed code back
         if(bodyObject.html) {
+          //posting a text post to my Tumblr blog with the embed code as the message
           tumblr.post('/post', {type: 'text', body: tumblrPost}, function(err, json){
             console.log(json);
           });
