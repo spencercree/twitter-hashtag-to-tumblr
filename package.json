@@ -28,7 +28,8 @@
     "socket.io": "^1.4.5",
     "twitter": "^1.2.5",
     "dotenv": "~1.0.0",
-    "tumblrwks": "0.3.0"
+    "tumblrwks": "0.3.0",
+    "request": "2.73.1"
   },
   "engines": {
     "node": "4.4.7"
