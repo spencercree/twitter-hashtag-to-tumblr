@@ -39,21 +39,19 @@ client.stream('statuses/filter', {track: '#pokemongofail, #pokemongofails, #poke
       tweet is original or not.
     */
 
+    //id of the tweet that matches the hashtag
+    var tweetID = tweet.id_str;
+    //screenname of user who tweeted it
+    var username = tweet.user.screen_name;
+    //url to this tweet
+    var url = "https://twitter.com/" + username + "/status/" + tweetID;
+
+
+    //url that we will be pinging to get the embed code
+    var full_url = "http://publish.twitter.com/oembed?url=" + url;
+
     //if the tweet is original, let's proceed
     if(!tweet.retweeted_status) {
-      console.log("original tweet");
-
-      //id of the tweet that matches the hashtag
-      var tweetID = tweet.id_str;
-      //screenname of user who tweeted it
-      var username = tweet.user.screen_name;
-      //url to this tweet
-      var url = "https://twitter.com/" + username + "/status/" + tweetID;
-
-
-      //url that we will be pinging to get the embed code
-      var full_url = "http://publish.twitter.com/oembed?url=" + url;
-
       //get request to the oEmbed api
       request(full_url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -67,24 +65,21 @@ client.stream('statuses/filter', {track: '#pokemongofail, #pokemongofails, #poke
           //double checking that I did get an embed code back
           if(bodyObject.html) {
             //posting a text post to my Tumblr blog with the embed code as the message
-            //////////
-            // tumblr.post('/post', {type: 'text', body: tumblrPost}, function(err, json){
-            //   console.log(json);
-            // });
-            //////////
-            console.log("would now post to Tumblr");
+            tumblr.post('/post', {type: 'text', body: tumblrPost}, function(err, json){
+              console.log(json);
+            });
           };
         }
-        console.log(response.statusCode);
       });
 
     } else {
-      console.log("IS A RETWEET");
-    }
+      //do nothing because you are it is a retweet
+    };
 
   });//stream on end
 
   stream.on('error', function(error) {
+    console.log(error.message);
     throw error;
   });
 });
