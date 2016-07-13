@@ -4,6 +4,7 @@ Embed tweets with a certain hashtag as a new post on a Tumblr blog.
 ##Env
 I used dotenv to handle my environmental variables. Here are the ones that need to be addressed:
 TWITTER_CONSUMER_KEY = *******
+
 TWITTER_CONSUMER_SECRET = *******
 TWITTER_ACCESS_TOKEN_KEY = *******
 TWITTER_ACCESS_TOKEN_SECRET = *******
